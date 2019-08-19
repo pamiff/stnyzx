@@ -102,7 +102,9 @@
 					name: 'white',
 					color: '#ffffff'
 				},
-			]
+			],
+			Vue.prototype.MainColor = 'bg-purple',
+			Vue.prototype.SecondColor = 'bg-green'
 
 		},
 		onShow: function() {

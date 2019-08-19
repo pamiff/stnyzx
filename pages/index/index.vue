@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view @click="HideAddBar">
+		<view @click="HideAddBar" >
 			<store v-if="PageCur=='store'"></store>
 			<square v-if="PageCur=='square'"></square>
 			<news v-if="PageCur=='news'"></news>

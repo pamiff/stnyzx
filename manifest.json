@@ -40,7 +40,8 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {},
+			"usingComponents" : true
         }
     },
     /* SDK配置 */
@@ -52,7 +53,8 @@
         "setting" : {
             "urlCheck" : false,
             "es6" : true
-        }
+        },
+        "usingComponents" : true
     },
     "h5" : {
         "title" : "ColorUi for UniApp",
