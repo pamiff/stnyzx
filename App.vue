@@ -103,8 +103,8 @@
 					color: '#ffffff'
 				},
 			],
-			Vue.prototype.MainColor = 'bg-purple',
-			Vue.prototype.SecondColor = 'bg-green'
+			Vue.prototype.MainColor = 'bg-gradual-purple',
+			Vue.prototype.SecondColor = 'bg-pink'
 
 		},
 		onShow: function() {
