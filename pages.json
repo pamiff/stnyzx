@@ -2,30 +2,61 @@
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/index/home/index",
 			"style": {}
 		}
 	    ,{
-            "path" : "pages/store/store",
+            "path" : "pages/store/home/home",
             "style" : {}
         }
         ,{
-            "path" : "pages/square/square",
+            "path" : "pages/square/home/home",
             "style" : {}
         }
         ,{
-            "path" : "pages/news/news",
+            "path" : "pages/news/home/home",
             "style" : {}
         }
         ,{
-            "path" : "pages/my/my",
+            "path" : "pages/my/home/home",
             "style" : {}
         }
         ,{
-            "path" : "pages/add/add",
+            "path" : "pages/add/home/home",
             "style" : {}
         }
     ],
+	"tabBar": {
+	    "color": "#7a7e83",
+	    "selectedColor": "#39b54a",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/store/home/home",
+	        "text": "商家",
+	        "iconPath": "static/tabbar/store.png",
+	        "selectedIconPath": "static/tabbar/store_cur.png"
+	    }, {
+	        "pagePath": "pages/square/home/home",
+	        "text": "广场",
+	        "iconPath": "static/tabbar/square.png",
+	        "selectedIconPath": "static/tabbar/square_cur.png"
+	    }, {
+	        "pagePath": "pages/add/home/home",
+	        "text": "发布",
+	        "iconPath": "static/tabbar/add.png",
+	        "selectedIconPath": "static/tabbar/add_cur.png"
+	    }, {
+	        "pagePath": "pages/news/home/home",
+	        "text": "消息",
+	        "iconPath": "static/tabbar/news.png",
+	        "selectedIconPath": "static/tabbar/news_cur.png"
+	    }, {
+	        "pagePath": "pages/my/home/home",
+	        "text": "我的",
+	        "iconPath": "static/tabbar/my.png",
+	        "selectedIconPath": "static/tabbar/my_cur.png"
+	    }]
+	},
 	"globalStyle": {
 		"mp-alipay": {
 			/* 支付宝小程序特有相关 */
@@ -42,7 +73,7 @@
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
 				"name": "首页", //模式名称
-				"path": "pages/index/index", //启动页面
+				"path": "pages/square/home/home", //启动页面
 				"query": "" //启动参数
 			}
 		]

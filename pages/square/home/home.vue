@@ -1,9 +1,9 @@
-<template name="square">
+<template>
 	<view>
 		<cu-custom :bgColor="MainColor">
 			<block slot="content">交流广场</block>
 		</cu-custom>
-		<scroll-view scroll-y :style="[{height:'calc(100vh - '+ CustomBar + 'px - 50px)'}]" :scroll-with-animation="true"
+		<scroll-view scroll-y  :scroll-with-animation="true" 
 		 :enable-back-to-top="true">
 			<view class="cu-bar bg-white search ">
 				<view class="search-form round">
@@ -24,7 +24,7 @@
 			<uni-notice-bar show-icon="true" scrollable="true" single="true" text="[单行] 这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏">
 			</uni-notice-bar>
 
-			<view>
+			
 				<scroll-view scroll-x class="nav text-center switchbar" :class="SecondColor">
 					<view class="cu-item" :class="0==TabCur?'text-white cur':''" @tap="tabSelect" data-id="0">
 						<text class="cuIcon-goodsnewfill"></text> 出货
@@ -36,14 +36,13 @@
 						<text class="cuIcon-communityfill"></text> 闲聊
 					</view>
 				</scroll-view>
-				
+
 				<view class="postlist">
-					<view v-if="TabCur == '0'" >
+					<view v-if="TabCur == '0'">
 						<view class="cu-card case" v-for="(post, index) in postList" :key="index">
 							<view class="cu-item shadow">
 								<view class="image">
-									<image :src="post.coverImg"
-									 mode="widthFix"></image>
+									<image :src="post.coverImg" mode="widthFix"></image>
 									<view class="cu-tag bg-blue">史诗</view>
 									<view class="cu-bar bg-shadeBottom"> <text class="text-cut">{{post.title}}</text></view>
 								</view>
@@ -67,9 +66,6 @@
 						</view>
 					</view>
 				</view>
-				
-			</view>
-
 			
 			
 		</scroll-view>
@@ -83,7 +79,7 @@
 <script>
 	import uniNoticeBar from "@/components/uni-notice-bar/uni-notice-bar.vue"
 	export default {
-		name: "square",
+		//name: "square",
 		components: {
 			uniNoticeBar
 		},
@@ -114,8 +110,7 @@
 			}
 		},
 		onReady() {
-			this.postList = [
-				{
+			this.postList = [{
 					coverImg: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
 					title: "我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。",
 					avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
@@ -150,12 +145,13 @@
 </script>
 
 <style>
-	.switchbar{
+	.switchbar {
 		position: sticky;
 		top: 0;
 		z-index: 10;
 	}
-	.postlist{
+
+	.postlist {
 		z-index: 5;
 	}
 </style>

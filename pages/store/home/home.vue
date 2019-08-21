@@ -1,4 +1,4 @@
-<template name="store">
+<template >
 	<view>
 		<cu-custom :bgColor="MainColor" :isBack="false">
 			<block slot="content">
@@ -14,7 +14,7 @@
 				<button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
 			</view>
 		</view>
-		<scroll-view scroll-y class="indexes" :style="[{height:'calc(100vh - '+ CustomBar + 'px - 50px)'}]"
+		<scroll-view scroll-y class="indexes" 
 		 :scroll-with-animation="true" :enable-back-to-top="true">
 			<view class="cu-list menu-avatar no-padding">
 				<view class="cu-item" v-for="(item,index) in stores" :key="index">
@@ -33,7 +33,7 @@
 
 <script>
 	export default {
-		name: "store",
+		//name: "store",
 		data() {
 			return {
 				MainColor: this.MainColor,
