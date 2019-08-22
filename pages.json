@@ -11,7 +11,13 @@
         }
         ,{
             "path" : "pages/square/home/home",
-            "style" : {}
+            "style" : {
+				"usingComponents": {
+					"van-tabs": "/wxcomponents/vant-webapp/tabs/index",
+					"van-tab": "/wxcomponents/vant-webapp/tab/index",
+					"van-notice-bar": "/wxcomponents/vant-webapp/notice-bar/index"
+				}
+			}
         }
         ,{
             "path" : "pages/news/home/home",

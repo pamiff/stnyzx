@@ -3,8 +3,7 @@
 		<cu-custom :bgColor="MainColor">
 			<block slot="content">交流广场</block>
 		</cu-custom>
-		<scroll-view scroll-y  :scroll-with-animation="true" 
-		 :enable-back-to-top="true">
+		<scroll-view scroll-y :scroll-with-animation="true" :enable-back-to-top="true">
 			<view class="cu-bar bg-white search ">
 				<view class="search-form round">
 					<text class="cuIcon-search"></text>
@@ -21,11 +20,9 @@
 					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 				</swiper-item>
 			</swiper>
-			<uni-notice-bar show-icon="true" scrollable="true" single="true" text="[单行] 这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏">
-			</uni-notice-bar>
+			<van-notice-bar left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" />
 
-			
-				<scroll-view scroll-x class="nav text-center switchbar" :class="SecondColor">
+			<!-- <scroll-view scroll-x class="nav text-center switchbar" :class="SecondColor">
 					<view class="cu-item" :class="0==TabCur?'text-white cur':''" @tap="tabSelect" data-id="0">
 						<text class="cuIcon-goodsnewfill"></text> 出货
 					</view>
@@ -35,29 +32,27 @@
 					<view class="cu-item" :class="2==TabCur?'text-white cur':''" @tap="tabSelect" data-id="2">
 						<text class="cuIcon-communityfill"></text> 闲聊
 					</view>
-				</scroll-view>
-
-				<view class="postlist">
-					<view v-if="TabCur == '0'">
-						<view class="cu-card case" v-for="(post, index) in postList" :key="index">
-							<view class="cu-item shadow">
-								<view class="image">
-									<image :src="post.coverImg" mode="widthFix"></image>
-									<view class="cu-tag bg-blue">史诗</view>
-									<view class="cu-bar bg-shadeBottom"> <text class="text-cut">{{post.title}}</text></view>
-								</view>
-								<view class="cu-list menu-avatar">
-									<view class="cu-item">
-										<view class="cu-avatar round lg" :style="[{backgroundImage: 'url(' + post.avatar + ')'}]"></view>
-										<view class="content flex-sub">
-											<view class="text-grey">{{post.userName}}</view>
-											<view class="text-gray text-sm flex justify-between">
-												{{post.postTime}}
-												<view class="text-gray text-sm">
-													<text class="cuIcon-attentionfill margin-lr-xs"></text> {{post.viewCount}}
-													<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
-													<text class="cuIcon-messagefill margin-lr-xs"></text> 30
-												</view>
+				</scroll-view> -->
+			<van-tabs sticky animated swipeable :offsetTop="CustomBar">
+				<van-tab title="出货">
+					<view class="cu-card case" v-for="(post, index) in postList" :key="index">
+						<view class="cu-item shadow">
+							<view class="image">
+								<image :src="post.coverImg" mode="widthFix"></image>
+								<view class="cu-tag bg-blue">史诗</view>
+								<view class="cu-bar bg-shadeBottom"> <text class="text-cut">{{post.title}}</text></view>
+							</view>
+							<view class="cu-list menu-avatar">
+								<view class="cu-item">
+									<view class="cu-avatar round lg" :style="[{backgroundImage: 'url(' + post.avatar + ')'}]"></view>
+									<view class="content flex-sub">
+										<view class="text-grey">{{post.userName}}</view>
+										<view class="text-gray text-sm flex justify-between">
+											{{post.postTime}}
+											<view class="text-gray text-sm">
+												<text class="cuIcon-attentionfill margin-lr-xs"></text> {{post.viewCount}}
+												<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+												<text class="cuIcon-messagefill margin-lr-xs"></text> 30
 											</view>
 										</view>
 									</view>
@@ -65,14 +60,14 @@
 							</view>
 						</view>
 					</view>
-				</view>
-			
-			
+				</van-tab>
+				<van-tab title="求购">内容 2</van-tab>
+				<van-tab title="闲聊">内容 3</van-tab>
+			</van-tabs>
+
+
+
 		</scroll-view>
-
-
-
-
 	</view>
 </template>
 
@@ -136,22 +131,14 @@
 				},
 			]
 		},
-		methods: {
-			tabSelect(e) {
-				this.TabCur = e.currentTarget.dataset.id
-			}
-		}
+		// methods: {
+		// 	tabSelect(e) {
+		// 		this.TabCur = e.currentTarget.dataset.id
+		// 	}
+
 	}
 </script>
 
 <style>
-	.switchbar {
-		position: sticky;
-		top: 0;
-		z-index: 10;
-	}
 
-	.postlist {
-		z-index: 5;
-	}
 </style>

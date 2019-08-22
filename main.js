@@ -4,6 +4,7 @@ import App from './App'
 import cuCustom from './colorui/components/cu-custom.vue'
 Vue.component('cu-custom',cuCustom)
 
+
 // import add from './pages/add/home.vue'
 // Vue.component('add', add)
 // 
