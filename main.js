@@ -10,7 +10,6 @@ import wxApolloFetcher from 'wx-apollo-fetcher'
 import { split } from 'apollo-link'
 import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
-import  ws from 'ws'
 
 Vue.component('cu-custom',cuCustom)
 
