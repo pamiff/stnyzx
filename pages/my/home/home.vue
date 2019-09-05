@@ -7,6 +7,7 @@
 				<view><view class="cuIcon-qr_code margin-bottom-xl"></view></view>
 				
 			</view>
+			{{token}}
 			<view v-if="!isLogin">
 				<button class="cu-btn round bg-grey" open-type="getUserInfo" @getuserinfo="onLogin">未登录</button>
 			</view>
@@ -55,28 +56,46 @@
 </template>
 
 <script>
+	import gql from 'graphql-tag'
 	export default {
 		//name: "my",
 		data() {
 			return {
 				isLogin: false,
+				token: "11",
 			}
 		},
 		onReady() {
 			let that = this
-			uni.checkSession({
-				success () {
-				    //session_key 未过期，并且在本生命周期一直有效
-					that.isLogin = true
-				  },
-				  fail () {
-				    // session_key 已经失效，需要重新执行登录流程
-				    wx.login() //重新登录
-				  }
-			}
-			)
-		}
-
+			// uni.checkSession({
+			// 	success () {
+			// 	    //session_key 未过期，并且在本生命周期一直有效
+			// 		that.isLogin = true
+			// 	  },
+			// 	  fail () {
+			// 	    // session_key 已经失效，需要重新执行登录流程
+			// 	    wx.login()
+			// 	  
+			// )
+			console.log(this.$apollo)
+			wx.login({
+				success(res) {
+					console.log(res)
+				}
+			})
+		},
+		apollo: {
+			token: {
+				query: gql`
+						query {
+							getJwt(input:"code") {
+							 token
+							}
+						}
+						`,
+				update: data => data.getJwt.token
+			},
+		},
 		
 	}
 </script>
