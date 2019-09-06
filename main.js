@@ -10,6 +10,7 @@ import wxApolloFetcher from 'wx-apollo-fetcher'
 import { split } from 'apollo-link'
 import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
+import { WxWebsocket } from 'wx-websocket.js'
 
 Vue.component('cu-custom',cuCustom)
 
@@ -38,12 +39,14 @@ const httpLink = createHttpLink({
 	fetch: wxApolloFetcher,
 })
 
+console.log(WxWebsocket)
+
 const wsLink = new WebSocketLink({
 	uri: "ws://localhost:8080/query",
 	options: {
 		reconnect: true,
 	},
-	// webSocketImpl: kWebSocket,
+	webSocketImpl: WxWebsocket,
 })
 
 const link = split(

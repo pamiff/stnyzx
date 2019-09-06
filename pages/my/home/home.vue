@@ -83,7 +83,44 @@
 					console.log(res)
 				}
 			})
+			this.$apollo.mutate({
+			      // 查询语句
+			      mutation: gql`mutation {
+					  newPost(input: {title: "1"})
+					}`,
+				  // variables: {
+				  //         post: {
+						// 	  title: "111",
+						//   },
+				  //       },
+				 update: (store, { data }) => {
+					 console.log(store, data)
+				 }
+		})
 		},
+		// mounted () {
+		//   const subQuery = gql`
+		//   subscription {
+		// 	  subMessage(id: "1") {
+		// 		content
+		// 	  }
+		// 	}`
+		// 
+		//   const observer = this.$apollo.subscribe({
+		//     query: subQuery,
+		//     
+		//   })
+		// 
+		//   observer.subscribe({
+		//     next (data) {
+		//       console.log(data)
+		//     },
+		//     error (error) {
+		//       console.error(error)
+		//     },
+		//   })
+		// },
+		
 		apollo: {
 			token: {
 				query: gql`
