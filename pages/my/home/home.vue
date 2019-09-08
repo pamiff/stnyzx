@@ -1,11 +1,19 @@
 <template>
 	<scroll-view scroll-y class="scrollPage">
+
+
 		<view class="UCenter-bg">
-			<view v-if="isLogin" >
-				<view><open-data class="cu-avatar xl " type="userAvatarUrl" ></open-data></view>
-				<view><open-data class="text-xl margin-bottom-xl" type="userNickName"></open-data></view>
-				<view><view class="cuIcon-qr_code margin-bottom-xl"></view></view>
-				
+			<view v-if="isLogin">
+				<view>
+					<open-data class="cu-avatar xl " type="userAvatarUrl"></open-data>
+				</view>
+				<view>
+					<open-data class="text-xl margin-bottom-xl" type="userNickName"></open-data>
+				</view>
+				<view>
+					<view class="cuIcon-qr_code margin-bottom-xl"></view>
+				</view>
+
 			</view>
 			{{token}}
 			<view v-if="!isLogin">
@@ -30,6 +38,22 @@
 					<text class=""></text> 收藏</view>
 			</view>
 		</view>
+		<ApolloQuery :query="test1query">
+			<template v-slot="{ result: { loading, error, data } }">
+				<!-- Loading -->
+				<div v-if="loading" class="loading apollo">Loading...</div>
+
+				<!-- Error -->
+				<div v-else-if="error" class="error apollo">An error occured</div>
+
+				<!-- Result -->
+				<div v-else-if="data" class="result apollo">{{ data.token }}</div>
+
+				<!-- No result -->
+				<div v-else class="no-result apollo">No result :(</div>
+			</template>
+		</ApolloQuery>
+
 		<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 
 			<view class="cu-item arrow">
@@ -63,6 +87,8 @@
 			return {
 				isLogin: false,
 				token: "11",
+				test2query: gql => gql`query {getJwt(input: " test") { token } } `,
+				test1query: gql`query {getJwt(input: " test") { token } } `,
 			}
 		},
 		onReady() {
@@ -77,26 +103,31 @@
 			// 	    wx.login()
 			// 	  
 			// )
-			console.log(this.$apollo)
 			wx.login({
 				success(res) {
 					console.log(res)
 				}
 			})
 			this.$apollo.mutate({
-			      // 查询语句
-			      mutation: gql`mutation {
+				// 查询语句
+				mutation: gql `mutation {
 					  newPost(input: {title: "1"})
 					}`,
-				  // variables: {
-				  //         post: {
-						// 	  title: "111",
-						//   },
-				  //       },
-				 update: (store, { data }) => {
-					 console.log(store, data)
-				 }
-		})
+				// variables: {
+				//         post: {
+				// 	  title: "111",
+				//   },
+				//       },
+				update: (store, {
+					data
+				}) => {
+					console.log(store, data)
+				}
+			})
+		},
+		mounted() {
+			// console.log(testquery)
+			
 		},
 		// mounted () {
 		//   const subQuery = gql`
@@ -120,10 +151,10 @@
 		//     },
 		//   })
 		// },
-		
+
 		apollo: {
 			token: {
-				query: gql`
+				query: gql `
 						query {
 							getJwt(input:"code") {
 							 token
@@ -133,7 +164,7 @@
 				update: data => data.getJwt.token
 			},
 		},
-		
+
 	}
 </script>
 
