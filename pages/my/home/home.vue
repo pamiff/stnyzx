@@ -108,22 +108,22 @@
 					console.log(res)
 				}
 			})
-			this.$apollo.mutate({
-				// 查询语句
-				mutation: gql `mutation {
-					  newPost(input: {title: "1"})
-					}`,
-				// variables: {
-				//         post: {
-				// 	  title: "111",
-				//   },
-				//       },
-				update: (store, {
-					data
-				}) => {
-					console.log(store, data)
-				}
-			})
+			// this.$apollo.mutate({
+			// 	// 查询语句
+			// 	mutation: gql `mutation {
+			// 		  newPost(input: {title: "1"})
+			// 		}`,
+			// 	// variables: {
+			// 	//         post: {
+			// 	// 	  title: "111",
+			// 	//   },
+			// 	//       },
+			// 	update: (store, {
+			// 		data
+			// 	}) => {
+			// 		console.log(store, data)
+			// 	}
+			// })
 		},
 		mounted() {
 			// console.log(testquery)
@@ -153,16 +153,26 @@
 		// },
 
 		apollo: {
-			token: {
-				query: gql `
-						query {
-							getJwt(input:"code") {
-							 token
-							}
-						}
-						`,
-				update: data => data.getJwt.token
-			},
+			// token: {
+			// 	query: gql `
+			// 			query {
+			// 				getJwt(input:"code") {
+			// 				 token
+			// 				}
+			// 			}
+			// 			`,
+			// 	update: data => data.getJwt.token
+			// },
+			isLogin: {
+				query: gql `,
+					query {
+						isLogin
+					}
+				`,
+				update(data) {
+					console.log(data)
+				}
+			}
 		},
 
 	}
