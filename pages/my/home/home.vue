@@ -15,9 +15,11 @@
 				</view>
 
 			</view>
-			{{token}}
+			{{token.id}}
+			{{token.score}}
 			<view v-if="!isLogin">
-				<button class="cu-btn round bg-grey" open-type="getUserInfo" @getuserinfo="onLogin">未登录</button>
+				<!-- <button class="cu-btn round bg-grey" open-type="getUserInfo" @getuserinfo="onLogin">未登录</button> -->
+				<button class="cu-btn round bg-grey" @click="test">test</button>
 			</view>
 			<image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
 		</view>
@@ -38,21 +40,6 @@
 					<text class=""></text> 收藏</view>
 			</view>
 		</view>
-		<ApolloQuery :query="test1query">
-			<template v-slot="{ result: { loading, error, data } }">
-				<!-- Loading -->
-				<div v-if="loading" class="loading apollo">Loading...</div>
-
-				<!-- Error -->
-				<div v-else-if="error" class="error apollo">An error occured</div>
-
-				<!-- Result -->
-				<div v-else-if="data" class="result apollo">{{ data.token }}</div>
-
-				<!-- No result -->
-				<div v-else class="no-result apollo">No result :(</div>
-			</template>
-		</ApolloQuery>
 
 		<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 
@@ -87,8 +74,29 @@
 			return {
 				isLogin: false,
 				token: "11",
+				
 				test2query: gql => gql`query {getJwt(input: " test") { token } } `,
 				test1query: gql`query {getJwt(input: " test") { token } } `,
+			}
+		},
+		methods: {
+			
+			test: function() {
+				// console.log(this.$apolloProvider)
+				// this.$apolloProvider
+				this.$apollo.mutate({
+					mutation: gql`
+						mutation($id: String!) {
+							upvotePost(id: $id) @client {
+								id,
+								score
+							}
+						}
+					`,
+					variables: {
+						id: "1",
+					},
+				})
 			}
 		},
 		onReady() {
@@ -163,15 +171,32 @@
 			// 			`,
 			// 	update: data => data.getJwt.token
 			// },
-			isLogin: {
-				query: gql `,
-					query {
-						isLogin
+			// isLogin: {
+			// 	query: gql `,
+			// 		query {
+			// 			isLogin
+			// 		}
+			// 	`,
+			// 	update(data) {
+			// 		console.log(data)
+			// 	}
+			// }
+			token: {
+				query: gql`,
+					query($id: String!) {
+						post(id: $id) @client {
+							id,
+							score
+						}
 					}
 				`,
-				update(data) {
-					console.log(data)
-				}
+				variables: {
+					id: "1",
+				},
+				// update(data){
+				// 	console.log(data)
+				// },
+				update: data => data.post
 			}
 		},
 
