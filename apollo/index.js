@@ -46,19 +46,19 @@ const apolloClient = new ApolloClient({
 
 cache.writeData({
 	data: {
-		isLogin: true,
-		somepost: [
-			{
-				__typename: "post",
-				id: "1",
-				score: 11,
-			},
-			{
-				__typename: "post",
-				id: "2",
-				score: 22,
-			}
-		]
+		// isLogin: true,
+		// somepost: [
+		// 	{
+		// 		__typename: "post",
+		// 		id: "1",
+		// 		score: 11,
+		// 	},
+		// 	{
+		// 		__typename: "post",
+		// 		id: "2",
+		// 		score: 22,
+		// 	}
+		// ]
 	}
 })
 

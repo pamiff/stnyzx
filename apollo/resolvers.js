@@ -3,42 +3,33 @@ import gql from 'graphql-tag'
 export const typeDefs = gql`
 	type Query {
 		isLogin: Boolean!
-		post(id: String!): Post!
+		token: String!
 	}
 	type Mutation {
-		upvotePost(id: String!): Post!
-	}
-	type Post {
-		id: String
-		score: Int!
+		login: String!
 	}
 `
 
-const postQuery = gql`
-	query {
-		somepost {
-			id,
-			score
-		}
-	}
-`
 
 export const resolvers = {
 	Query: {
-		post: (_, {id}, {cache}) => {
-			const data = cache.readQuery({query: postQuery})
-			console.log(cache)
-			return data.somepost.find(item => item.id === id)
+		// post: (_, {id}, {cache}) => {
+		// 	const data = cache.readQuery({query: postQuery})
+		// 	console.log(cache)
+		// 	return data.somepost.find(item => item.id === id)
+		// },
+		isLogin: (a, b, c) => {
+			console.log(a, b, c)
 		}
 	},
 	Mutation: {
-		upvotePost: (_, {id}, {cache}) => {
-			const data = cache.readQuery({query: postQuery})
-			const currentItem = data.somepost.find(item => item.id === id)
-			currentItem.score += 1
-			console.log(cache)
-			cache.writeQuery({query: postQuery, data})
-			return currentItem
-		}
+		// upvotePost: (_, {id}, {cache}) => {
+		// 	const data = cache.readQuery({query: postQuery})
+		// 	const currentItem = data.somepost.find(item => item.id === id)
+		// 	currentItem.score += 1
+		// 	console.log(cache)
+		// 	cache.writeQuery({query: postQuery, data})
+		// 	return currentItem
+		// }
 	}
 }

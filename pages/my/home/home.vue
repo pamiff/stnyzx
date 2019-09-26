@@ -15,8 +15,9 @@
 				</view>
 
 			</view>
-			{{token.id}}
-			{{token.score}}
+<!-- 			{{token.id}}
+			{{token.score}} -->
+			{{isLogin}}
 			<view v-if="!isLogin">
 				<!-- <button class="cu-btn round bg-grey" open-type="getUserInfo" @getuserinfo="onLogin">未登录</button> -->
 				<button class="cu-btn round bg-grey" @click="test">test</button>
@@ -171,33 +172,33 @@
 			// 			`,
 			// 	update: data => data.getJwt.token
 			// },
-			// isLogin: {
-			// 	query: gql `,
-			// 		query {
-			// 			isLogin
-			// 		}
-			// 	`,
-			// 	update(data) {
-			// 		console.log(data)
-			// 	}
-			// }
-			token: {
-				query: gql`,
-					query($id: String!) {
-						post(id: $id) @client {
-							id,
-							score
-						}
+			isLogin: {
+				query: gql `,
+					query {
+						isLogin @client
 					}
 				`,
-				variables: {
-					id: "1",
-				},
-				// update(data){
-				// 	console.log(data)
-				// },
-				update: data => data.post
+				update(data) {
+					console.log(data)
+				}
 			}
+			// token: {
+			// 	query: gql`,
+			// 		query($id: String!) {
+			// 			post(id: $id) @client {
+			// 				id,
+			// 				score
+			// 			}
+			// 		}
+			// 	`,
+			// 	variables: {
+			// 		id: "1",
+			// 	},
+			// 	// update(data){
+			// 	// 	console.log(data)
+			// 	// },
+			// 	update: data => data.post
+			// }
 		},
 
 	}
